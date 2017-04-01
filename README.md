@@ -1,9 +1,10 @@
 # chalk-printer
 
-<h1 align="center">
-  ![Chalk Printer banner](https://github.com/rmariuzzo/chalk-printer/raw/master/banner.png)
-  <small>NodeJS library to print colored message in the console.</small>
-</h1>
+<h6 align="center">
+  <img src="https://github.com/rmariuzzo/chalk-printer/raw/master/banner.png" />
+  <br>
+  NodeJS library to print colored message in the console.
+</h6>
 
 ## Installation
 
