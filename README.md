@@ -1,5 +1,3 @@
-# chalk-printer
-
 <h6 align="center">
   <img src="https://github.com/rmariuzzo/chalk-printer/raw/master/banner.png" />
   <br>
