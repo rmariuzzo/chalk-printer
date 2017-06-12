@@ -1,6 +1,6 @@
 {
   "name": "chalk-printer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "NodeJS library to print colored message in the console.",
   "main": "index.js",
   "repository": "git@github.com:rmariuzzo/chalk-printer.git",

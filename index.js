@@ -3,7 +3,7 @@ const chalk = require('chalk')
 /**
  * Right pad a text.
  * @param  {String} str - The text to pad.
- * @param  {integer} n - The max number of resulting characters.
+ * @param  {Number} n - The max number of resulting characters.
  * @return {String} - The padded text.
  */
 function rightPad(str, n) {
@@ -12,6 +12,21 @@ function rightPad(str, n) {
     }
     return str
 }
+
+/**
+ * Left pad a text.
+ * @param {String} str - The text to pad.
+ * @param {Number} n - The max number of resulting characters.
+ * @return {String} - The padded text.
+ */
+function leftPad(str, n) {
+    while (str.length < n) {
+        str = str + ' '
+    }
+    return str
+}
+
+let lastPrint = 0;
 
 module.exports = {
 
@@ -60,8 +75,14 @@ module.exports = {
      * @param {...Object} params - Parameters to print.
      */
     withLabel(label, color, ...params) {
+        const now = new Date()
+        const diff = (now - lastPrint) / 1000
+        const time = now.toISOString()
+        const secs = diff.toPrecision(3).substr(0, 4)
         color = color || chalk
-        label = color.bold(rightPad(`[${label}]`, 7))
+        label = leftPad(label, 5)
+        label = color.bold(rightPad(`[${label}] ${time} +${secs}s`, 40))
+        lastPrint = now;
         console.log('  ', label, ...params.map(m => color(m)))
     },
 }
