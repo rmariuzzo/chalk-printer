@@ -1,4 +1,5 @@
 const chalk = require('chalk')
+const util = require('util')
 
 /**
  * Right pad a text.
@@ -83,6 +84,6 @@ module.exports = {
         label = leftPad(label, 5)
         label = color.bold(rightPad(`[${label}] ${time} +${secs}s`, 40))
         lastPrint = now;
-        console.log('  ', label, ...params.map(m => color(m)))
+        console.log('  ', label, color(util.format.apply(null, params)))
     },
 }
