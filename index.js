@@ -99,7 +99,9 @@ module.exports = {
 
     // Format the context.
     const ctx = getContext()
-    const context = color(`[${ctx[0].file}] (${ctx.slice(0, 3).reverse().map(c => c.fn).join(' » ')})`)
+    const path = ctx[0].path.substr(-15)
+    const tree = ctx.reverse().map(c => c.fn).join(' » ').substr(-30)
+    const context = color(`[${path}] (${tree})`)
 
     // Format parameters.
     params = color(util.format.apply(null, params))
