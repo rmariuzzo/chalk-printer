@@ -17,26 +17,6 @@ function rightPad(str, n) {
   return str
 }
 
-function getContext() {
-  return (new Error).stack
-    .split('\n')
-    .slice(1)
-    .map(s => s.trim().split(/\s+/))
-    .map(([, obj, file]) => {
-      const objParts = obj.split('.')
-      file = file && file.match(/^\((.+)\)$/)
-      const fileParts = file && file.length > 1 ? file[1].split(':') : []
-      return {
-        fn: objParts.pop(),
-        obj: objParts.join('.'),
-        pos: fileParts.splice(fileParts.length - 2).join(':'),
-        path: fileParts.join(':'),
-        file: fileParts.join(':').split(/[\/\\]+/).pop()
-      }
-    })
-    .filter(({ path }) => path !== __filename)
-}
-
 let lastPrint = 0
 
 module.exports = {
@@ -97,17 +77,11 @@ module.exports = {
     const secs = diff.toPrecision(3).substr(0, 4)
     const timestamp =  color(rightPad(`${date} +${secs}s`, 31))
 
-    // Format the context.
-    const ctx = getContext()
-    const path = ctx[0].path.substr(-15)
-    const tree = ctx.reverse().map(c => c.fn).join(' » ').substr(-30)
-    const context = color(`[${path}] (${tree})`)
-
     // Format parameters.
     params = color(util.format.apply(null, params))
 
     // Print messages.
-    console.log('  ', label, `${timestamp} ${context} ${params}` )
+    console.log('  ', label, `${timestamp} ${params}` )
     lastPrint = now
   },
 }
